@@ -14,3 +14,22 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+ion-icon {
+    &[class*="AuditionsAlert-"] {
+        // Instead of using the font-based icons
+        // We're applying SVG masks
+        mask-size: contain;
+        mask-position: 50% 50%;
+        mask-repeat: no-repeat;
+        background: currentColor;
+        width: 1em;
+        height: 1em;
+    }
+    // custom icons
+    &[class*="AuditionsAlert-customicon1"] {
+        mask-image: url(../assets/imgs/SouthAfricaFlag.svg);
+    }
+    &[class*="AuditionsAlert-customicon2"] {
+        mask-image: url(../assets/imgs/NigeriaFlag.svg);
+    }
+}

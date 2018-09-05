@@ -1,0 +1,63 @@
+<!--
+  Generated template for the ProfilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header transparent>
+    <ion-navbar transparent>
+        <ion-title style="margin-left: 10%;">
+            <h1 style="color: darkgray !important">My Profile</h1>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+<ion-list style="margin-top: -25px;">
+
+  <ion-item>
+    <ion-label floating>First Name</ion-label>
+    <ion-input type="text" [(ngModel)]="profile.firstName"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Last Name</ion-label>
+    <ion-input type="text" [(ngModel)]="profile.lastName"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Date Of Birth</ion-label>
+    <ion-input type="date" [(ngModel)]="profile.dateOfBirth"></ion-input>
+  </ion-item>
+
+  <ion-item>
+  <ion-label floating>Gender</ion-label>
+  <ion-select [(ngModel)]="profile.gender">
+    <ion-option value="f">Female</ion-option>
+    <ion-option value="m">Male</ion-option>
+    <ion-option value="o">Other</ion-option>
+  </ion-select>
+</ion-item>
+
+  <ion-item>
+    <ion-label floating>Career</ion-label>
+    <ion-input type="text" [(ngModel)]="profile.career"></ion-input>
+  </ion-item>
+
+  <ion-item>
+  <ion-label floating>Country</ion-label>
+  <ion-select [(ngModel)]="profile.country">
+        <ion-option *ngFor="let country of countries" value="{{country.Name}}">{{country.Name}}</ion-option>
+  </ion-select>
+</ion-item>
+
+   <ion-item>
+    <ion-label floating>Cell Phone</ion-label>
+    <ion-input type="text" [(ngModel)]="profile.cellPhone"></ion-input>
+  </ion-item>
+
+ <ion-item class="center" no-lines justify-content-center align-items-center>
+    <button ion-button color="secondary" class="summitbutton" (click)="update(profile)">Update</button>
+  </ion-item>
+
+</ion-list>
+</ion-content>

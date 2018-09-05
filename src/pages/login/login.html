@@ -1,0 +1,53 @@
+<!--
+  Generated template for the LoginPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-content padding>
+    
+    <form [formGroup]="loginForm">
+            <ion-icon name="AuditionsAlert-customicon1"></ion-icon>
+        <div style="text-align:center">
+            <h4 style="font-family: 'Black Han Sans', sans-serif;color:darkgray;margin-top: 30%">Auditions Alert</h4>
+        </div>
+        <div>
+            <ion-list transparent>
+                <ion-item style="background: transparent !important">
+                    <ion-label floating>Email Address</ion-label>
+                    <ion-input style="color:#ffffff" placeholder="" [(ngModel)]="user.emailAddress" formControlName="emailAddress" [class.invalid]="!loginForm.controls.emailAddress.valid && (loginForm.controls.emailAddress.dirty || submitAttempt)"></ion-input>
+                </ion-item>
+                <ion-item style="background: transparent !important">
+                    <ion-label floating>Password</ion-label>
+                    <ion-input style="color:#ffffff" type="password" placeholder="" [(ngModel)]="user.password" formControlName="password" [class.invalid]="!loginForm.controls.password.valid && (loginForm.controls.password.dirty || submitAttempt)"></ion-input>
+                </ion-item>
+            </ion-list>
+            <div padding>
+                <button ion-button block color="secondary" (click)="login(user)">Sign In</button>
+                <p *ngIf="showError" style="color: red;font-size: small;text-align:center"> invalid email or password. </p>
+            </div>
+            <ion-row style="margin-top: -20px;">
+                <ion-col>
+                    <button style="color:white !important" (click)="register()" ion-button icon-left clear small class="login-links">
+        <div>Register</div>
+      </button>
+                </ion-col>
+                <ion-col>
+                    <button style="color:white !important" ion-button icon-left clear small class="login-links" (click)="forgotPassword()">
+        <div>Forgot Password?</div>
+      </button>
+                </ion-col>
+            </ion-row>
+        </div>
+    </form>
+</ion-content>
+
+<ion-footer transparent>
+    <ion-toolbar transparent>
+        <ion-title style="text-align: center">
+            <small>
+            powered by Mogztec
+    </small>
+        </ion-title>
+    </ion-toolbar>
+</ion-footer>
