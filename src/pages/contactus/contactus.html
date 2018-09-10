@@ -11,30 +11,30 @@
     </ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content padding>
+<ion-content padding transparent>
   <form [formGroup]="contactUsForm">
-    <ion-list style="margin-top: -25px;">
-  <ion-item>
-    <ion-label floating>Full Name</ion-label>
-    <ion-input type="text" [(ngModel)]="message.fullName" formControlName="fullName" [class.invalid]="!contactUsForm.controls.fullName.valid && (contactUsForm.controls.fullName.dirty || submitAttempt)"></ion-input>
+    <ion-list style="margin-top: -25px;" transparent>
+  <ion-item style="background: transparent !important">
+    <ion-label style="color: darkgray" floating>Full Name</ion-label>
+    <ion-input type="text" style="color:#ffffff" [(ngModel)]="message.fullName" formControlName="fullName" [class.invalid]="!contactUsForm.controls.fullName.valid && (contactUsForm.controls.fullName.dirty || submitAttempt)"></ion-input>
   </ion-item>
 
-  <ion-item>
-    <ion-label floating>Subject</ion-label>
-    <ion-input type="text" [(ngModel)]="message.subject" formControlName="subject" [class.invalid]="!contactUsForm.controls.subject.valid && (contactUsForm.controls.subject.dirty || submitAttempt)"></ion-input>
+  <ion-item style="background: transparent !important">
+    <ion-label style="color: darkgray" floating>Subject</ion-label>
+    <ion-input type="text" style="color:#ffffff" [(ngModel)]="message.subject" formControlName="subject" [class.invalid]="!contactUsForm.controls.subject.valid && (contactUsForm.controls.subject.dirty || submitAttempt)"></ion-input>
   </ion-item>
 
-  <ion-item>
-    <ion-label floating>Email Address</ion-label>
-    <ion-input type="email" [(ngModel)]="message.emailAddress" formControlName="emailAddress" [class.invalid]="!contactUsForm.controls.emailAddress.valid && (contactUsForm.controls.emailAddress.dirty || submitAttempt)"></ion-input>
+  <ion-item style="background: transparent !important">
+    <ion-label style="color: darkgray" floating>Email Address</ion-label>
+    <ion-input type="email" style="color:#ffffff" [(ngModel)]="message.emailAddress" formControlName="emailAddress" [class.invalid]="!contactUsForm.controls.emailAddress.valid && (contactUsForm.controls.emailAddress.dirty || submitAttempt)"></ion-input>
   </ion-item>
 
-  <ion-item>
-      <ion-label floating>Message</ion-label>
-  <ion-textarea rows="6" [(ngModel)]="message.message" formControlName="message" [class.invalid]="!contactUsForm.controls.message.valid && (contactUsForm.controls.message.dirty || submitAttempt)"></ion-textarea>
+  <ion-item style="background: transparent !important">
+      <ion-label style="color: darkgray" floating>Message</ion-label>
+  <ion-textarea rows="6" style="color:#ffffff" [(ngModel)]="message.message" formControlName="message" [class.invalid]="!contactUsForm.controls.message.valid && (contactUsForm.controls.message.dirty || submitAttempt)"></ion-textarea>
   </ion-item>
 
-   <ion-item class="center" no-lines>
+   <ion-item class="center" no-lines style="background: transparent !important">
     <button class="summitbutton" ion-button color="secondary" (click)="send()">SEND</button>
     <p *ngIf="showError" style="color: red;font-size: small;text-align:center"> We are unable to recieve your massage<br> at the moment please try again later. </p>
   </ion-item>

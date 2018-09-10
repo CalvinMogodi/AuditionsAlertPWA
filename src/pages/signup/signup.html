@@ -6,51 +6,51 @@
 -->
 <ion-header transparent>
   <ion-navbar transparent>
-    <ion-title style="margin-left: 20%;">
+    <ion-title>
       <h1 style="color: darkgray !important">Sign Up</h1>
     </ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
   <form [formGroup]="signUpForm">
-    <ion-list style="margin-top: -25px;">
-      <ion-item>
-        <ion-label floating>First Name</ion-label>
-        <ion-input type="text" [(ngModel)]="user.firstName" formControlName="firstName" [class.invalid]="!signUpForm.controls.firstName.valid && (signUpForm.controls.firstName.dirty || submitAttempt)"></ion-input>
+    <ion-list style="margin-top: -25px;" transparent>
+      <ion-item style="background: transparent !important">
+        <ion-label style="color: darkgray" floating>First Name</ion-label>
+        <ion-input style="color: darkgray" type="text" [(ngModel)]="user.firstName" formControlName="firstName" [class.invalid]="!signUpForm.controls.firstName.valid && (signUpForm.controls.firstName.dirty || submitAttempt)"></ion-input>
       </ion-item>
 
-      <ion-item>
-        <ion-label floating>Last Name</ion-label>
-        <ion-input type="text" [(ngModel)]="user.lastName" formControlName="lastName" [class.invalid]="!signUpForm.controls.lastName.valid && (signUpForm.controls.lastName.dirty || submitAttempt)"></ion-input>
+      <ion-item style="background: transparent !important">
+        <ion-label style="color: darkgray" floating>Last Name</ion-label>
+        <ion-input style="color: #ffffff" type="text" [(ngModel)]="user.lastName" formControlName="lastName" [class.invalid]="!signUpForm.controls.lastName.valid && (signUpForm.controls.lastName.dirty || submitAttempt)"></ion-input>
       </ion-item>
 
-      <ion-item>
-        <ion-label floating>Email Address</ion-label>
-        <ion-input type="email" [(ngModel)]="user.emailAddress" formControlName="emailAddress" [class.invalid]="!signUpForm.controls.emailAddress.valid && (signUpForm.controls.emailAddress.dirty || submitAttempt)"></ion-input>
+      <ion-item style="background: transparent !important">
+        <ion-label style="color: darkgray" floating>Email Address</ion-label>
+        <ion-input style="color: #ffffff" type="email" [(ngModel)]="user.emailAddress" formControlName="emailAddress" [class.invalid]="!signUpForm.controls.emailAddress.valid && (signUpForm.controls.emailAddress.dirty || submitAttempt)"></ion-input>
       </ion-item>
 
-      <ion-item>
-        <ion-label floating>Password</ion-label>
-        <ion-input type="password" [(ngModel)]="user.password" formControlName="password" [class.invalid]="!signUpForm.controls.password.valid && (signUpForm.controls.password.dirty || submitAttempt)"></ion-input>
+      <ion-item style="background: transparent !important">
+        <ion-label style="color: darkgray" floating>Password</ion-label>
+        <ion-input style="color: #ffffff" type="password" [(ngModel)]="user.password" formControlName="password" [class.invalid]="!signUpForm.controls.password.valid && (signUpForm.controls.password.dirty || submitAttempt)"></ion-input>
       </ion-item>
 
-      <ion-item>
-        <ion-label floating>Confirm Password</ion-label>
-        <ion-input type="password" [(ngModel)]="confirmPassword" formControlName="confirmPassword" [class.invalid]="!signUpForm.controls.confirmPassword.valid && (signUpForm.controls.confirmPassword.dirty || submitAttempt)"></ion-input>
+      <ion-item style="background: transparent !important">
+        <ion-label style="color: darkgray" floating>Confirm Password</ion-label>
+        <ion-input style="color:#ffffff" type="password" [(ngModel)]="confirmPassword" formControlName="confirmPassword" [class.invalid]="!signUpForm.controls.confirmPassword.valid && (signUpForm.controls.confirmPassword.dirty || submitAttempt)"></ion-input>
       </ion-item>
 
-      <ion-item>
-        <ion-label floating>Country</ion-label>
-        <ion-select [(ngModel)]="user.country" formControlName="country" [class.invalid]="!signUpForm.controls.country.valid && (signUpForm.controls.country.dirty || submitAttempt)">
+      <ion-item style="background: transparent !important">
+        <ion-label style="color: darkgray" floating>Country</ion-label>
+        <ion-select style="color: #ffffff" [(ngModel)]="user.country" formControlName="country" [class.invalid]="!signUpForm.controls.country.valid && (signUpForm.controls.country.dirty || submitAttempt)">
           <ion-option *ngFor="let country of countries" value="{{country.Name}}">{{country.Name}}</ion-option>
         </ion-select>
       </ion-item>
 
-      <ion-item class="center" no-lines justify-content-center align-items-center>
+      <ion-item class="center" no-lines justify-content-center align-items-center style="background: transparent !important">
         <small style="color: #fff;">By signing up, I agree to <span style="color: mediumblue;" (click)="termsandconditions()">terms and conditions</span></small>
       </ion-item>
 
-      <ion-item class="center" no-lines justify-content-center align-items-center>
+      <ion-item class="center" no-lines justify-content-center align-items-center style="background: transparent !important">
         <button ion-button color="secondary" class="summitbutton" (click)="signup(user)">Sign Up</button>
         <p *ngIf="confirmPassword != user.password" style="color: red;font-size: small;text-align:center"> Passwords do not match. </p>
         <p *ngIf="showError && errorMessage == ''" style="color: red;font-size:small;text-align:center"> We are unable to sign up at the moment please try again later.</p>
