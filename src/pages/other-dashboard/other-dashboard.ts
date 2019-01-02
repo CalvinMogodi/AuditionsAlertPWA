@@ -6,6 +6,7 @@ import { AuditiondetailPage } from '../auditiondetail/auditiondetail';
 import { GlobalVariablesProvider } from '../../providers/global-variables/global-variables';
 import { HttpClient } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
+import { GroupchatPage } from '../groupchat/groupchat';
 
 /**
  * Generated class for the OtherDashboardPage page.
@@ -66,6 +67,10 @@ export class OtherDashboardPage {
   toTimestamp(strDate) {
     var datum = Date.parse(strDate);
     return datum / 1000;
+  }
+
+  goToChat() {
+    this.navCtrl.push(GroupchatPage);
   }
 
   openDetails(audition){

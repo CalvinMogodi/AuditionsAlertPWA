@@ -57,7 +57,7 @@ export class LoginPage {
       });
 
       loader.present();      
-      this.http.post("http://197.242.149.23/api/loginUser", user).subscribe((response: any) => {
+      this.http.post("http://auditionsalertsa.dedicated.co.za/api/loginUser", user).subscribe((response: any) => {
         if (response.result == true) {
           this.storage.set('loggedin', true);
           this.globalVariables.setUserId(response.data.userId);

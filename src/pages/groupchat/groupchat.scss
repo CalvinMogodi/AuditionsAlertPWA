@@ -1,0 +1,13 @@
+page-groupchat {
+    ion-content {
+        background-image: url('../assets/imgs/background.png');
+        background-position: center;
+        background-size: cover;
+    }
+
+    .messageinput{
+        background-color: white;
+        border-radius: 5px;
+        color: black;
+    }
+}

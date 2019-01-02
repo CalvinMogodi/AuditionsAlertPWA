@@ -6,6 +6,7 @@ import { AuditiondetailPage } from '../auditiondetail/auditiondetail';
 import { GlobalVariablesProvider } from '../../providers/global-variables/global-variables';
 import { HttpClient } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
+import { GroupchatPage } from '../groupchat/groupchat';
 
 /**
  * Generated class for the NigeriaDashboardPage page.
@@ -40,6 +41,10 @@ export class NigeriaDashboardPage {
       }
     });
     this.getAuditions();
+  }
+
+  goToChat() {
+    this.navCtrl.push(GroupchatPage);
   }
 
   getAuditions() {

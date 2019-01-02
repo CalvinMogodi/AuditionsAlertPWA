@@ -4,7 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
 import { GlobalVariablesProvider } from '../providers/global-variables/global-variables';
-
+import { AdMobPro } from '@ionic-native/admob-pro';
 import { UploadeventPage } from '../pages/uploadevent/uploadevent';
 import { AboutusPage } from '../pages/aboutus/aboutus';
 import { ContactusPage } from '../pages/contactus/contactus';
@@ -23,7 +23,7 @@ export class MyApp {
 
   pages: Array<{ title: string, component: any }>;
 
-  constructor(private fcm: FCM, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public storage: Storage, public globalVariables: GlobalVariablesProvider) {
+  constructor(private admob: AdMobPro, private fcm: FCM, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public storage: Storage, public globalVariables: GlobalVariablesProvider) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -57,7 +57,20 @@ export class MyApp {
       this.fcm.getToken().then(token => {
         //backend.registerToken(token);
       });
+
+      this.admob.onAdDismiss().subscribe(() => { });
     });
+  }
+
+  onClick() {
+    let adId;
+    if(this.platform.is('android')) {
+      adId = 'ca-app-pub-5466570245729953~4179509318';
+    } else if (this.platform.is('ios')) {
+      adId = 'ca-app-pub-5466570245729953~4179509318';
+    }
+    this.admob.prepareInterstitial({adId: adId})
+      .then(() => { this.admob.showInterstitial(); });
   }
 
   openPage(page) {

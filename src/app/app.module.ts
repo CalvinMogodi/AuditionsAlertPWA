@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
+import { AdMobPro } from '@ionic-native/admob-pro';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -17,6 +18,7 @@ import { ProfilePage } from '../pages/profile/profile';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { TermsandconditionsPage } from '../pages/termsandconditions/termsandconditions';
 import { AuditiondetailPage } from '../pages/auditiondetail/auditiondetail';
+import { GroupchatPage } from '../pages/groupchat/groupchat';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -38,6 +40,18 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { NigeriaDashboardPage } from '../pages/nigeria-dashboard/nigeria-dashboard';
 import { OtherDashboardPage } from '../pages/other-dashboard/other-dashboard';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+
+var config = {
+  apiKey: "AIzaSyAmNVkBvSBbL8UK0S06_GMSoqtYhfB7gqk",
+  authDomain: "auditionsalert-3a1b8.firebaseapp.com",
+  databaseURL: "https://auditionsalert-3a1b8.firebaseio.com",
+  projectId: "auditionsalert-3a1b8",
+  storageBucket: "auditionsalert-3a1b8.appspot.com",
+  messagingSenderId: "865782535687"
+};
+
 @NgModule({
   declarations: [ 
     MyApp,
@@ -57,7 +71,8 @@ import { OtherDashboardPage } from '../pages/other-dashboard/other-dashboard';
     AuditiondetailPage,
     TabsPage,
     NigeriaDashboardPage,
-    OtherDashboardPage
+    OtherDashboardPage,
+    GroupchatPage
   ],
   imports: [
     BrowserModule,
@@ -65,7 +80,9 @@ import { OtherDashboardPage } from '../pages/other-dashboard/other-dashboard';
     HttpClientModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
-    IonicImageViewerModule
+    IonicImageViewerModule,
+    AngularFireModule.initializeApp(config),
+    AngularFireDatabaseModule, // for database
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -85,7 +102,8 @@ import { OtherDashboardPage } from '../pages/other-dashboard/other-dashboard';
     AuditiondetailPage,
     TabsPage,
     NigeriaDashboardPage,
-    OtherDashboardPage
+    OtherDashboardPage,
+    GroupchatPage
   ],
   providers: [
     StatusBar,
@@ -99,7 +117,8 @@ import { OtherDashboardPage } from '../pages/other-dashboard/other-dashboard';
     IOSFilePicker,
     Camera,
     File,
-    FCM
+    FCM,
+    AdMobPro
   ]
 })
 export class AppModule {}

@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ToastController, Platform  } from 'ionic-angular';
 import { UploadeventPage } from '../uploadevent/uploadevent';
 import { AuditionProvider } from '../../providers/audition/audition';
 import { AuditiondetailPage } from '../auditiondetail/auditiondetail';
+import { GroupchatPage } from '../groupchat/groupchat';
 import { GlobalVariablesProvider } from '../../providers/global-variables/global-variables';
 import { HttpClient } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
+import { AdMobPro } from '@ionic-native/admob-pro';
 
 /**
  * Generated class for the DashboardPage page.
@@ -13,7 +15,10 @@ import { Storage } from '@ionic/storage';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-
+interface AdMobType {
+  banner: string,
+  interstitial: string
+};
 @Component({
   selector: 'page-dashboard',
   templateUrl: 'dashboard.html',
@@ -24,8 +29,15 @@ export class DashboardPage {
   public userType: string;
   public userId: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient, public storage: Storage, public auditionProvider: AuditionProvider, public toastCtrl: ToastController, private globalVariables: GlobalVariablesProvider) {
+  constructor(public admob: AdMobPro, private platform: Platform, public navCtrl: NavController, public navParams: NavParams, public http: HttpClient, public storage: Storage, public auditionProvider: AuditionProvider, public toastCtrl: ToastController, private globalVariables: GlobalVariablesProvider) {
     //get audition events
+    this.admob.onAdDismiss().subscribe(() => { });
+
+    // preppare and load ad resource in background, e.g. at begining of game level
+if(this.admob) this.admob.prepareInterstitial( {adId:'ca-app-pub-5466570245729953~4179509318', autoShow:false} );
+
+// show the interstitial later, e.g. at end of game level
+if(this.admob) this.admob.showInterstitial();
     this.userId = this.globalVariables.getUserId();
     this.storage.get('userType').then((val) => {
       if (val) {
@@ -112,4 +124,21 @@ export class DashboardPage {
     toast.present(toast);
   }
 
+  goToChat() {
+    this.navCtrl.push(GroupchatPage);
+  }
+
+  onClick() {
+    var admobid: AdMobType;
+    admobid = { // for Windows Phone
+      banner: 'ca-app-pub-234234234234324/234234234234',
+      interstitial: 'ca-app-pub-234234234234324/234234234234'
+    };
+    this.admob.createBanner({
+      adId: admobid.banner,
+      position:this.admob.AD_POSITION.BOTTOM_CENTER, 
+      autoShow: true
+    })
+
+  }
 }

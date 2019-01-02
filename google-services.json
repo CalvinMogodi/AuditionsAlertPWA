@@ -8,6 +8,37 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:865782535687:android:324d193b6dcbcdce",
+        "android_client_info": {
+          "package_name": "io.ionic.auditionsalert"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "865782535687-nb8eimithp19hhlpvcnvm30gcr2vr1tl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXyRAjiCxiBAWwHffWhFO_DEW62vaV-tU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:865782535687:android:b9c1bf0b40cb7bce",
         "android_client_info": {
           "package_name": "io.ionic.auditionsalertsa"
