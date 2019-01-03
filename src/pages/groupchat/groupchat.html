@@ -14,9 +14,24 @@
 
 
 <ion-content padding>
-    <ion-card *ngFor="let item of chats">
-        <ion-card-content>{{item.message}}</ion-card-content>
-    </ion-card>
+  <ion-card *ngFor="let item of chats">
+    <ion-row>
+      <ion-col>
+        <label>{{item.user}}</label><br> {{item.message}}
+      </ion-col>
+      <ion-col item-end text-center>
+        <ion-note>
+          11h ago
+        </ion-note>
+      </ion-col>
+    </ion-row>
+  </ion-card>
 
-      <ion-textarea class="messageinput" type="text" placeholder="Username"></ion-textarea>
+  <ion-item style="background-color: transparent;">
+    <textarea [(ngModel)]="message" class="messageinput" #myInput id="myInput" minLength="35" style="width: 100%; padding: 8px"
+      maxLength="500" (keyup)="resize()" type="text" placeholder="Type a message"></textarea>
+    <button ion-button large clear (click)="sendMessage(message)" item-end>
+      <ion-icon name="play"></ion-icon>
+    </button>
+  </ion-item>
 </ion-content>
