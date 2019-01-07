@@ -110,5 +110,4 @@
         <variable name="PLAY_SERVICES_VERSION" value="16.0.0" />
     </plugin>
     <engine name="browser" spec="5.0.4" />
-    <engine name="android" spec="7.1.1" />
 </widget>

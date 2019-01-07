@@ -13,25 +13,31 @@
 </ion-header>
 
 
-<ion-content padding>
-  <ion-card *ngFor="let item of chats">
+<ion-content padding  #messagesContent id="messagesContent">
+  <ion-card *ngFor="let item of chats" class="others-message" [ngClass]="{'my-message':item.isMine }">
     <ion-row>
       <ion-col>
-        <label>{{item.user}}</label><br> {{item.message}}
-      </ion-col>
-      <ion-col item-end text-center>
-        <ion-note>
-          11h ago
-        </ion-note>
+        <label style="font-weight: 500;">{{item.user}}</label> 
+        <ion-note style="float: right;">
+          {{item.time}}
+        </ion-note><br>         
+        <p>
+          {{item.message}}
+        </p>
+          <ion-icon *ngIf="item.isMine || userType == 'admin'" name="trash" style="float: right;margin-top: -15px;" (click)="deleteMessage(item)"></ion-icon>
       </ion-col>
     </ion-row>
   </ion-card>
-
-  <ion-item style="background-color: transparent;">
-    <textarea [(ngModel)]="message" class="messageinput" #myInput id="myInput" minLength="35" style="width: 100%; padding: 8px"
-      maxLength="500" (keyup)="resize()" type="text" placeholder="Type a message"></textarea>
-    <button ion-button large clear (click)="sendMessage(message)" item-end>
-      <ion-icon name="play"></ion-icon>
-    </button>
-  </ion-item>
 </ion-content>
+
+<ion-footer transparent>
+  <ion-toolbar transparent>
+    <ion-item style="background-color: transparent;">
+      <textarea [(ngModel)]="message" class="messageinput" #myInput id="myInput" minLength="35" style="width: 100%; padding: 8px"
+        maxLength="500" (keyup)="resize()" type="text" placeholder="Type a message"></textarea>
+      <button ion-button large clear (click)="sendMessage(message)" item-end>
+        <ion-icon name="play"></ion-icon>
+      </button>
+    </ion-item>
+  </ion-toolbar>
+</ion-footer>

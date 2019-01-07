@@ -3,6 +3,10 @@ page-groupchat {
         background-image: url('../assets/imgs/background.png');
         background-position: center;
         background-size: cover;
+        -webkit-user-select: text;
+        -moz-user-select: text;
+        -ms-user-select: text;
+        user-select: text;
     }
 
     .messageinput{
@@ -13,5 +17,18 @@ page-groupchat {
 
     .card-content-md {
         padding: 3px 6px !important;
+        -webkit-user-select: text;
+        -moz-user-select: text;
+        -ms-user-select: text;
+        user-select: text;
+    }
+
+    .my-message{
+        border-radius: 10px 0px 10px 10px !important;
+        background-color: ghostwhite;
+    }
+
+    .others-message{
+        border-radius: 0px 10px 10px 10px;
     }
 }
