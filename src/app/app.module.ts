@@ -42,6 +42,7 @@ import { OtherDashboardPage } from '../pages/other-dashboard/other-dashboard';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 
 var config = {
   apiKey: "AIzaSyAmNVkBvSBbL8UK0S06_GMSoqtYhfB7gqk",
@@ -83,6 +84,7 @@ var config = {
     IonicImageViewerModule,
     AngularFireModule.initializeApp(config),
     AngularFireDatabaseModule, // for database
+    AngularFireStorageModule, // imports firebase/firestore, only needed for database features
   ],
   bootstrap: [IonicApp],
   entryComponents: [
