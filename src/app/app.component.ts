@@ -35,7 +35,17 @@ export class MyApp {
       { title: 'Logout', component: LoginPage },
     ];
 
-    
+    this.fcm.onNotification().subscribe(data => {
+      if(data.wasTapped){
+        if(data.param1 == 'isAGroupChat'){
+          this.nav.push(GroupchatPage);
+        }
+      } else {
+        if(data.param1 == 'isAGroupChat'){
+          this.nav.push(GroupchatPage);
+        }
+      };
+    });
 
   }
 
