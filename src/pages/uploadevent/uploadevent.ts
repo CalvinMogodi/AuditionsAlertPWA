@@ -126,18 +126,22 @@ export class UploadeventPage {
         toast.present();
     }
 
-    sendNotification() {
+    sendNotification(post) {
+        if(post.auditionName == 'Other')
+            post.auditionName = 'other country';
+
+        let notificationBody = 'New audition from ' + post.auditionName + '.';
         let body = {
             "notification": {
                 "title": "Auditions Alert",
-                "body": "An audition has been added.",
+                "body": notificationBody,
                 "sound": "default",
                 "click_action": "FCM_PLUGIN_ACTIVITY",
                 "icon": "fcm_push_icon"
             },
             "data": {
-                "param1": "value1",
-                "param2": "value2"
+                "param1": "isNewPost",
+                "param2": post
             },
             "to": "/topics/auditionsalertsa",
             "priority": "high",
@@ -187,7 +191,7 @@ export class UploadeventPage {
             this.loader.dismiss();
             if (response.result == true) {
                 this.showError("Your event has been shared successful.");
-                this.sendNotification();
+                this.sendNotification(this.event);
                 this.navCtrl.setRoot(DashboardPage);
             }
             else {

@@ -4,6 +4,8 @@ import { GlobalVariablesProvider } from '../../providers/global-variables/global
 import { UserProvider } from '../../providers/user/user';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http/';
+import { HttpHeaders } from '@angular/common/http';
 
 /**
  * Generated class for the GroupchatPage page.
@@ -29,7 +31,7 @@ export class GroupchatPage {
   @ViewChild('myInput', { read: ElementRef }) myInput: ElementRef;
   @ViewChild(Content) content: Content;
 
-  constructor(private zone: NgZone, public db: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams, public globalVariables: GlobalVariablesProvider, public userProvider: UserProvider) {
+  constructor(public http: HttpClient, private zone: NgZone, public db: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams, public globalVariables: GlobalVariablesProvider, public userProvider: UserProvider) {
 
     db.database.ref().child('chats').orderByChild('date').on('value', (snapshot) => {
       var orders = snapshot.val();
@@ -107,6 +109,32 @@ export class GroupchatPage {
 
   deleteMessage(chat) {
     this.db.list('/chats').remove(chat.key);
+    this.sendNotification(chat);
   }
+
+  sendNotification(chat) {    
+    let body = {
+        "notification": {
+            "title": chat.user,
+            "body": chat.message,
+            "sound": "default",
+            "click_action": "FCM_PLUGIN_ACTIVITY",
+            "icon": "fcm_push_icon"
+        },
+        "data": {
+            "param1": "isAGroupChat",
+            "param2": "value2"
+        },
+        "to": "/topics/auditionsalertsa",
+        "priority": "high",
+        "restricted_package_name": ""
+    }
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.post("https://fcm.googleapis.com/fcm/send", body, {
+        headers: options.set('Authorization', 'key=AAAAyZSpFgc:APA91bF0scbKTY6MDYobDyCSQeuh5qHHveCoE7Ye5lkTWmscBbDd1ihkE63hVfMxElrGvp_MNg8uw6hlWNHpCU0kPlUMk7j4yN2s6ViVYmRtHkSZEE4VSkFMShIXl2FD1umGW34GjHShlGT5UtJBcTv5t2p0vrqDew'),
+    }).subscribe(response => {
+    }, error => {
+    });
+}
 
 }

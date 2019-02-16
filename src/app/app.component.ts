@@ -12,6 +12,7 @@ import { LoginPage } from '../pages/login/login';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { FCM } from '@ionic-native/fcm';
 import { TabsPage } from '../pages/tabs/tabs';
+import { GroupchatPage } from '../pages/groupchat/groupchat';
 
 @Component({
   templateUrl: 'app.html'
@@ -33,6 +34,8 @@ export class MyApp {
       { title: 'Contact Us', component: ContactusPage },
       { title: 'Logout', component: LoginPage },
     ];
+
+    
 
   }
 
