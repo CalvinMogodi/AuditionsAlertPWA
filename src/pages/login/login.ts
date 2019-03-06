@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
 import { SignupPage } from '../signup/signup';
 import { ForgotpasswordPage } from '../forgotpassword/forgotpassword';
 import { DashboardPage } from '../dashboard/dashboard';
@@ -8,6 +8,7 @@ import { GlobalVariablesProvider } from '../../providers/global-variables/global
 import { Storage } from '@ionic/storage';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { TabsPage } from '../tabs/tabs';
+import { HTTP } from '@ionic-native/http';
 
 /**
  * Generated class for the LoginPage page.
@@ -28,7 +29,7 @@ export class LoginPage {
   public loginForm: FormGroup;
   public showError: boolean = false;
   public submitAttempt: boolean = false;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient, public globalVariables: GlobalVariablesProvider, public storage: Storage, public loadingCtrl: LoadingController, public formBuilder: FormBuilder) {
+  constructor(public navCtrl: NavController, public toast: ToastController, public navParams: NavParams, public http: HttpClient, public globalVariables: GlobalVariablesProvider, public storage: Storage, public loadingCtrl: LoadingController, public formBuilder: FormBuilder) {
 
     this.loginForm = formBuilder.group({
       emailAddress: ['', Validators.compose([Validators.required])],
@@ -56,7 +57,8 @@ export class LoginPage {
         content: "Please wait..."
       });
 
-      loader.present();      
+      loader.present();  
+      this.showErrors(user.password);    
       this.http.post("http://auditionsalertsa.dedicated.co.za/api/loginUser", user).subscribe((response: any) => {
         if (response.result == true) {
           this.storage.set('loggedin', true);
@@ -71,22 +73,21 @@ export class LoginPage {
           loader.dismiss();
           this.showError = true;
         }
-      });
+      }), (error)=>{
+        loader.dismiss();
+        this.showErrors(error);
+      };
     }
 
-       this.http.post("http://auditionsalertsa.dedicated.co.za/api/loginUser", user).subscribe((response: any) => 
-       {
-           if(response.result == true)
-           {
-               this.globalVariables.setUserId(response.data.userId);
-               this.globalVariables.setFirstTimeLogin(response.data.firstLogin);
-               this.navCtrl.setRoot(TabsPage);
-           }
-           else if(response.result == false)
-           {
-               this.showError = true;
-           }  
-       });
   }
 
+  
+  showErrors(str) {
+    let toast = this.toast.create({
+        message: str,
+        duration: 10000,
+        position: 'bottom'
+    });
+    toast.present();
+}
 }
